@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/bootstrap0.min.css" />
+<script src="/js/bootstrap0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+<style >
+ body
+ {
+  margin:0;
+  padding:0;
+  background-color:#f1f1f1;
+ }
+ .box
+ {
+  width:1270px;
+  padding:20px;
+  background-color:#fff;
+  border:1px solid #ccc;
+  border-radius:5px;
+  margin-top:25px;
+ }
+
+ .dataTables_filter input{
+ font-size: 10px;
+ width:500px;
+}
+.Row
+{
+display: table;
+width: 70%; /*Optional*/
+table-layout: fixed; /*Optional*/
+border-spacing: 10px; /*Optional*/
+padding-left: 20px;
+}
+.Row2
+{
+display: table;
+width: 70%; /*Optional*/
+table-layout: fixed; /*Optional*/
+border-spacing: 10px; /*Optional*/
+/*  padding-left: 50px; */
+}
+.Row3
+{
+/ display: table;
+width: 15%; /*Optional*/
+table-layout: fixed; /*Optional*/
+border-spacing: 10px; /*Optional*/
+/*  padding-left: 50px; */
+}
+.Column
+{
+display: table-cell;
+
+}
+.pointer {
+cursor: pointer;
+}
+
+</style>
+
+</head>
+<body id="test1">
+  <div class="container box">
+    <br />
+      <div class="table-responsive">
+
+<!--<body onload="myFunction()" class="gesamt">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ar-dz.js"></script>
+  <label for="file" class="Column " style="width: 20%;">Datei Name:</label>
+-->
+
+    <div class="Row">
+      <input type="file" name="file1" id="myFile" method="post" class="Column " onchange="myFunction()&loadFileAsText()" />
+      <button id="" class="Column btn btn-sm btn-success"  onclick="addhtml()" style="margin-left: 250px;">Add</button>
+    </div><hr>
+
+<!--
+<div id="mydiv" class="gesamt">
+
+</div>
+-->
+
+      <p id="demo" ></p>
+      <div class="inp" id="in">
+        <div class="Row">
+          <h4 align="" class="Column " style="width: 20%;">Titel:</h4>
+          <input type="text" name="titel" id="gmTitel" class="Column item_titel form-control " value=""/>
+        </div>
+        <div class="Row">
+          <h4 align="" class="Column " style="width: 20%;">Beschlussdatum:</h4>
+          <input type="text" name="beschlussdatum" id="gmBeschlussdatum" class="Column item_beschlussdatum form-control" />
+        </div>
+        <div class="Row">
+          <h4 align="" class="Column " style="width: 20%;">Fundstelle:</h4>
+          <input type="text" name="fundstelle" id="gmFundstelle" class="Column item_fundstelle form-control" />
+        </div>
+        <div class="Row">
+          <h4 align="" class="Column " style="width: 20%;">Inkrafttreten:</h4>
+          <input type="text" name="inkrafttreten" id="gmInkrafttreten" class="Column item_inkrafttreten form-control" />
+        </div>
+        <div class="Row">
+          <h4 align="" class="Column " style="width: 20%;">Detailseite:</h4>
+          <textarea type="text" name="detailseite" id="gmDetailseite" class="Column item_detailseite form-control" /></textarea>
+        </div>
+        <div class="Row">
+          <h4 align="" class="Column " style="width: 20%;">Gesta:</h4>
+          <input type="text" name="gesta" id="gmGesta" class="Column item_gesta form-control" />
+        </div><hr>
+
+        <div class="Row">
+          <button type="button" name="save" id="save" class="btn btn-info" >Speichern</button>
+        </div>
+      </div>
+
+
+<div id="inserted_item_data" class="">
+
+</div>
+</div>
+</div>
+
+<script>
+
+function loadFileAsText(){
+  var fileToLoad = document.getElementById("myFile").files[0];
+  var fileReader = new FileReader();
+  fileReader.onload = function(fileLoadedEvent){
+      var textFromFileLoaded = fileLoadedEvent.target.result;
+  //    document.getElementById("inputTextToSave").value = textFromFileLoaded;
+      $('#mydiv').html(textFromFileLoaded);
+  //    alert(value );
+  //    console.log($('#mydiv').html());
+
+  };
+
+  fileReader.readAsText(fileToLoad, "UTF-8");
+}
+
+function myFunction(){
+    var x = document.getElementById("myFile");
+    var txt = "";
+    if ('files' in x) {
+        if (x.files.length == 0) {
+            txt = "Select one or more files.";
+        } else {
+            for (var i = 0; i < x.files.length; i++) {
+                txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                var file = x.files[i];
+                if ('name' in file) {
+                    txt += "name: " + file.name + "<br>";
+                }
+                if ('size' in file) {
+                    txt += "size: " + file.size + " bytes <br>";
+                }
+            }
+        }
+    }
+    else {
+        if (x.value == "") {
+            txt += "Select one or more files.";
+        } else {
+            txt += "The files property is not supported by your browser!";
+            txt  += "<br>The path of the selected file: " + x.value;
+        }
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+
+</script>
+
+</body>
+</html>
+
+<script src="/js/addFileHtml.js"></script>
+<script src="/js/dataForInsert.js"></script>

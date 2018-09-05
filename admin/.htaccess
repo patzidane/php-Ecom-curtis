@@ -1,0 +1,5 @@
+
+  AuthType Basic
+  AuthName "Authentication Required"
+  AuthUserFile /opt/lampp/htdocs/tutorial/admin/.htpasswd
+  Require valid-user

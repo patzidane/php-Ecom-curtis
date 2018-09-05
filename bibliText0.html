@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/css/bootstrap0.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+<script src="/js/bootstrap0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+<!--<body onload="myFunction()" class="gesamt">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ar-dz.js"></script>
+-->
+</head>
+<body id="test1">
+
+  <div class="container box">
+    <br />
+      <div class="table-responsive">
+
+        <label for="file">Datei wählen:</label><br />
+        <input type="file" name="file1" id="myFile" method="post" class="" onchange="myFunction()&loadFileAsText()" onclick="">
+      <br />
+        <div id="mydiv" class="gesamt"></div>
+        <button id="" class="btn btn-info" onclick="addhtml()">Hochladen</button>
+        <p id="demo" ></p><hr>
+
+        <div class="Row">
+          <h4 align="" style="width: 20%;" class="Column">Titel:</h4>
+          <textarea type="text" name="titel" id="gmTitel" class="item_titel Column form-control" value="" style="width: 70%;"></textarea>
+        </div>
+        <div class="Row">
+          <h4 align="" style="width: 20%;" class="Column">Beschlussdatum:</h4>
+          <input type="text" name="beschlussdatum" id="gmBeschlussdatum" class="item_beschlussdatum Column form-control" style="width: 70%;"/>
+        </div>
+        <div class="Row">
+          <h4 align="" style="width: 20%;" class="Column">Fundstelle:</h4>
+          <input type="text" name="fundstelle" id="gmFundstelle" class="item_fundstelle Column form-control" style="width: 70%;"/>
+        </div>
+        <div class="Row">
+          <h4 align="" style="width: 20%;" class="Column">Inkrafttreten:</h4>
+          <input type="text" name="inkrafttreten" id="gmInkrafttreten" class="item_inkrafttreten Column form-control" style="width: 70%;"/>
+        </div>
+        <div class="Row">
+          <h4 align="" style="width: 20%;" class="Column">Detailseite:</h4>
+          <textarea type="text" name="detailseite" id="gmDetailseite" class="item_detailseite Column form-control" style="width: 70%;"></textarea>
+        </div>
+        <div class="Row">
+          <h4 align="" style="width: 20%;" class="Column">Gesta:</h4>
+          <input type="text" name="gesta" id="gmGesta" class="item_gesta Column form-control" style="width: 70%;"/>
+        </div><hr>
+
+        <div class="">
+          <button type="button" name="save" id="save" class="saveGM btn btn-success" value="saveGM" onclick="checkFields()">Speichern</button>
+        </div>
+
+        <div id="check_fields" class="check_fields"></div>
+        <div id="test" class="test"></div>
+
+        <div id="inserted_item_data" class=""></div>
+
+      </div>
+    </div>
+
+<script>
+
+function checkFields(){
+
+  let item_titel =$(".item_titel").val();
+  let item_beschl =$(".item_beschlussdatum").val();
+  let item_fund =$(".item_fundstelle").val();
+  let item_inkr =$(".item_inkrafttreten").val();
+  let item_detail =$(".item_detailseite").val();
+  let item_gesta =$(".item_gesta").val();
+
+  if(item_titel=='' || item_beschl=='' || item_fund==''||
+      item_inkr==''|| item_detail=='' || item_gesta==''){
+
+    $('#check_fields').html('<ul class="bg-danger"><li class="text-danger">Sie müssen alle Angaben eingeben!</li></ul>');
+  }
+
+  if(item_titel !='' && item_beschl !='' && item_fund !=''&&
+      item_inkr !=''&& item_detail !='' && item_gesta !=''){
+        $.ajax({
+          url:"check_db_data.php",
+          method:"POST",
+          data:{item_gesta:item_gesta},
+          success:function(data){
+
+            $('#check_fields').html(data);
+
+  //            $('#data_exists').html(data);
+          }
+        });
+    }
+
+}
+
+function loadFileAsText(){
+  var fileToLoad = document.getElementById("myFile").files[0];
+  var fileReader = new FileReader();
+  fileReader.onload = function(fileLoadedEvent){
+      var textFromFileLoaded = fileLoadedEvent.target.result;
+  //    document.getElementById("inputTextToSave").value = textFromFileLoaded;
+      $('#mydiv').html(textFromFileLoaded);
+  //    alert(value );
+  //    console.log($('#mydiv').html());
+
+  };
+
+  fileReader.readAsText(fileToLoad, "UTF-8");
+}
+
+function myFunction(){
+    var x = document.getElementById("myFile");
+    var txt = "";
+    if ('files' in x) {
+        if (x.files.length == 0) {
+            txt = "Select one or more files.";
+        } else {
+            for (var i = 0; i < x.files.length; i++) {
+                txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                var file = x.files[i];
+                if ('name' in file) {
+                    txt += "name: " + file.name + "<br>";
+                }
+                if ('size' in file) {
+                    txt += "size: " + file.size + " bytes <br>";
+                }
+            }
+        }
+    }
+    else {
+        if (x.value == "") {
+            txt += "Select one or more files.";
+        } else {
+            txt += "The files property is not supported by your browser!";
+            txt  += "<br>The path of the selected file: " + x.value;
+        }
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+
+</script>
+
+</body>
+</html>
+
+<script src="/js/addFileHtml.js"></script>
+<script src="/js/dataForInsert.js"></script>
