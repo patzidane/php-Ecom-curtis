@@ -10,6 +10,7 @@ $featured = $db->query($sql);
 ?>
 
   <!-- main content -->
+  <!-- edit test -->
   <div class="col-md-8">
     <div class="row">
       <h2 class="text-center">Feature Products</h2>
