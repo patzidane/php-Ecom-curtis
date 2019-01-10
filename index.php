@@ -11,6 +11,7 @@ $featured = $db->query($sql);
 
   <!-- main content -->
 <!-- edit from github -->
+<!-- edit from local-->
   <div class="col-md-8">
     <div class="row">
       <h2 class="text-center">Feature Products</h2>
@@ -30,7 +31,7 @@ $featured = $db->query($sql);
   </div>
 
   <?
-//include 'includes/detailsmodel.php';
+//include 'includes/detailsmodel.php'; test
 include 'includes/rightbar.php';
 include 'includes/footer.php';
   ?>
